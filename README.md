@@ -1,5 +1,7 @@
-"vim-config
-"vim config : 个人的 Vim 配置文件
+#vim-config
+vim config : 个人的 Vim 配置文件
+
+```
 " Configuration file for vim
 "let $PYTHONHOME="/Library/Frameworks/Python.framework/Versions/3.6"
 "let $PYTHONHOME = "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"
@@ -274,3 +276,4 @@ noremap <Right> <Nop>
 nmap <leader>r <Plug>WxappReload
 noremap <F3> :Autoformat<CR>
 "au FileType go nmap <leader>r<Plug>(go-run)
+```
