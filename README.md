@@ -1,7 +1,5 @@
-# vim-config
-vim config : 个人的 Vim 配置文件
-
-```
+"vim-config
+"vim config : 个人的 Vim 配置文件
 " Configuration file for vim
 "let $PYTHONHOME="/Library/Frameworks/Python.framework/Versions/3.6"
 "let $PYTHONHOME = "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"
@@ -14,6 +12,14 @@ function HeaderPython()
   call append(2, "# File Name: ".expand('%:t'))
   call append(3, "# Created Date: ".strftime('%Y-%m-%d %H:%M:%S'))
   call append(5, "# Author: yeyong")
+  normal G
+  normal o
+endf
+
+function HeaderJavaScript()
+  call setline(1, "// File Name ".expand("%:t"))
+  call append(1, "// Created Date: ".strftime("%Y-%m-%d %H:%M:%S"))
+  call append(2, "// Author: yeyong")
   normal G
   normal o
 endf
@@ -131,7 +137,8 @@ set nocompatible
 set hidden
 set showcmd
 "set tw=80 fo+=Mm
-set guifont=Menlo:h14
+set guifont=PT_Mono:h13
+"set guifont=Monaco:h12
 "set guifont=Mono:h15
 "set guifont=Courier_New:h18
 set clipboard=unnamed
@@ -213,6 +220,7 @@ au BufNewFile *.py :call HeaderPython()
 "au BufWritePre,FileWritePre *.py :call LastModified()
 "au BufWritePre,FileWritePre *.rb :call LastModified()
 au BufNewFile *.rb :call HeaderRuby()
+au BufNewFile *.js :call HeaderJavaScript()
 
 let g:indentLine_char='|'
 let g:indentLine_enabled=1
@@ -234,6 +242,12 @@ let g:indentLine_enabled=1
 "call pathogen#infect()
 "set list
 "set listchars=tab:>-,trail:-
+"colorscheme  desert
+"colorscheme  evening
+"colorscheme  koehler
+"colorscheme  pablo
+"colorscheme  slate
+"colorscheme  torte
 colorscheme  molokai
 set t_Co=256
 autocmd FileType vue syntax sync fromstart
@@ -260,5 +274,3 @@ noremap <Right> <Nop>
 nmap <leader>r <Plug>WxappReload
 noremap <F3> :Autoformat<CR>
 "au FileType go nmap <leader>r<Plug>(go-run)
-
-```
