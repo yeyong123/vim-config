@@ -1,4 +1,4 @@
-#vim-config
+# vim-config
 vim config : 个人的 Vim 配置文件
 
 ```
