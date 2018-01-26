@@ -1,47 +1,50 @@
+
 " Configuration file for vim
 "let $PYTHONHOME="/Library/Frameworks/Python.framework/Versions/3.6"
 "let $PYTHONHOME = "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"
-set modelines=0		" CVE-2007-2438
+set modelines=0   " CVE-2007-2438
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
-function HeaderPython()
-  call setline(1, "# !/usr/bin/evn python3")
-  call append(1, "# -*- coding: utf-8 -*-")
-  call append(2, "# File Name: ".expand('%:t'))
-  call append(3, "# Created Date: ".strftime('%Y-%m-%d %H:%M:%S'))
-  call append(5, "# Author: yeyong")
+function HeaderScriptTitle()
+  call setline(1, "# coding:utf-8")
+  call append(1, "# File Name: ".expand('%:t'))
+  call append(2, "# Created Date: ".strftime('%Y-%m-%d %H:%M:%S'))
+  call append(3, "# Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
+  call append(4, "# Author: yeyong")
   normal G
   normal o
 endf
 
-function HeaderJavaScript()
-  call setline(1, "// File Name ".expand("%:t"))
-  call append(1, "// Created Date: ".strftime("%Y-%m-%d %H:%M:%S"))
-  call append(2, "// Author: yeyong")
-  normal G
-  normal o
-endf
 
-function LastModified()
-  if &modified
-    call setline(1, "# Last Modified: ".strftime('%Y-%m-%d %H:%M:%S'))
+function DateInsert()
+  call cursor(4, 1)
+  if search("Last modified") != 0
+    let line = line('.')
+    if (&filetype=="javascript"||&filetype=="go")
+      call setline(line, "Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
+    else
+      call setline(line, "# Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
+    endif
   endif
 endf
 
 
-function HeaderRuby()
-  call setline(1, "# !/usr/bin/evn ruby")
-  call append(1, "# encoding: UTF-8")
-  call append(2, "# File Name: ".expand('%:t'))
-  call append(3, "# Created Date: ".strftime('%Y-%m-%d %H:%M:%S'))
-  call append(5, "# Author: yeyong")
+function HeaderTitle()
+  call setline(1, "/*")
+  call append(1, "File Name: ".expand("%:t"))
+  call append(2, "Created Date: ".strftime("%Y-%m-%d %H:%M:%S"))
+  call append(3, "Author: yeyong")
+  call append(4, "Last modified: ".strftime("%Y-%m-%d %H:%M:%S"))
+  call append(5, "*/")
   normal G
   normal o
 endf
 
 
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-"set backspace=2		" more powerful backspacing
+
+
+set nocompatible  " Use Vim defaults instead of 100% vi compatibility
+"set backspace=2    " more powerful backspacing
 filetype on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -85,7 +88,7 @@ Plugin 'slim-template/vim-slim'
 " Other sets of snippets (optional):
 "Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
@@ -98,13 +101,13 @@ Plugin 'lilydjwg/colorizer'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tomlion/vim-solidity'
 Plugin 'Chiel92/vim-autoformat'
-call vundle#end() 
+call vundle#end()
 " Don't write backup file if vim is being called by "crontab -e"
 "au BufWrite /private/tmp/crontab.* set nowritebackup
 " Don't write backup file if vim is being called by "chpass"
 "au BufWrite /private/etc/pw.* set nowritebackup
 if has("syntax")
- syntax on
+  syntax on
 endif
 syntax enable
 "set background=dark
@@ -167,12 +170,12 @@ let g:syntastic_check_on_wq = 0
 "let g:ycm_path_to_python_interpreter='/usr/local/bin/python3.6'
 "let g:ycm_seed_indentifiers_with_syntax=1
 let g:syntastic_html_tidy_ignore_errors = [
-    \  'plain text isn''t allowed in <head> elements',
-    \  '<base> escaping malformed URI reference',
-    \  'discarding unexpected <body>',
-    \  '<script> escaping malformed URI reference',
-    \  '</head> isn''t allowed in <body> elements'
-    \ ]
+      \  'plain text isn''t allowed in <head> elements',
+      \  '<base> escaping malformed URI reference',
+      \  'discarding unexpected <body>',
+      \  '<script> escaping malformed URI reference',
+      \  '</head> isn''t allowed in <body> elements'
+      \ ]
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_python_checkers=['flake8', 'python3']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'html'] }
@@ -186,9 +189,9 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ctrlp_map = '<c-i>'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_custom_ignore = {
- "   \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
- "   \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
- "   \ }
+"   \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+"   \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+"   \ }
 let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
@@ -204,7 +207,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:formatter_yapf_style='pep8'
@@ -214,11 +217,9 @@ let g:typescript_compiler_options = ''
 autocmd FileType typescript :set makeprg=tsc
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
-au BufNewFile *.py :call HeaderPython()
-"au BufWritePre,FileWritePre *.py :call LastModified()
-"au BufWritePre,FileWritePre *.rb :call LastModified()
-au BufNewFile *.rb :call HeaderRuby()
-au BufNewFile *.js :call HeaderJavaScript()
+au BufNewFile *.py,*rb :call HeaderScriptTitle()
+au BufNewFile *.js,*.go :call HeaderTitle()
+autocmd FileWritePre,BufWritePre *.py,*.rb,*.js,*.go ks|call DateInsert()|'s
 
 let g:indentLine_char='|'
 let g:indentLine_enabled=1
