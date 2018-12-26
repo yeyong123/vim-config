@@ -1,4 +1,3 @@
-
 " Configuration file for vim
 "let $PYTHONHOME="/Library/Frameworks/Python.framework/Versions/3.6"
 "let $PYTHONHOME = "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"
@@ -138,10 +137,10 @@ set nocompatible
 set hidden
 set showcmd
 "set tw=80 fo+=Mm
-set guifont=PT_Mono:h13
+"set guifont=PT_Mono:h14
 "set guifont=Monaco:h12
 "set guifont=Mono:h15
-"set guifont=Courier_New:h18
+set guifont=Courier:h15
 set clipboard=unnamed
 set lines=100 columns=278
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
@@ -152,6 +151,8 @@ set guioptions=aAce
 set linespace=8
 set regexpengine=1
 set tags=./tags;,tags;
+set nobackup
+set noswapfile
 "set transparency=10
 "syntax line
 set statusline+=%#warningmsg#
@@ -162,6 +163,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+set colorcolumn=87
 "let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
 "syntax line
 
@@ -177,7 +179,7 @@ let g:syntastic_html_tidy_ignore_errors = [
       \  '</head> isn''t allowed in <body> elements'
       \ ]
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_python_checkers=['flake8', 'python3']
+let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'html'] }
 let g:indentLine_char = "¦"
 let g:indentLine_enabled = 1
@@ -234,10 +236,13 @@ let g:indentLine_enabled=1
 "  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
 "  \ endif
 "
-"
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=red guibg=#111111
+  autocmd BufEnter * match OverLength /\%87v.*/
+augroup END
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /'%81v.\+/
-
+"au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim 2match Underlined /.\%81v/
 "call pathogen#infect()
 "set list
 "set listchars=tab:>-,trail:-
