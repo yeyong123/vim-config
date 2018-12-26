@@ -20,3 +20,10 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 :PluginInstall
 ```
+
+### 一些主要工具
+1. Python3.6, Ipython, pip3, numpy, pandas, flask tronado
+2. Ruby2, Rails5
+3. NodeJS
+4. MySQL, PostgreSQL, MongoDB
+5. 数据库工具 sequel pro
