@@ -12,8 +12,11 @@ wget --no-check-certificate --content-disposition https://raw.githubusercontent.
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
 
 ```
+
 
 3.安装插件
 
