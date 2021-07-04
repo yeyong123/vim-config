@@ -49,6 +49,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'vim-ruby/vim-ruby'
@@ -198,7 +199,7 @@ let g:ctrlp_working_path_mode='ra'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
+"let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 "let g:jsx_pragma_required = 1
 let g:go_highlight_functions = 1

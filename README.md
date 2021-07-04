@@ -29,4 +29,7 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 2. Ruby2, Rails5
 3. NodeJS
 4. MySQL, PostgreSQL, MongoDB
+5. Golang 1.16
+6. opencv-python
+6. the_silver_searcher
 5. 数据库工具 sequel pro
